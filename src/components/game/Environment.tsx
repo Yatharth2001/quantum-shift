@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useGameStore } from "@/stores/gameStore";
 import { generateMathPuzzle } from "@/lib/math/puzzleGenerator";
-import { Box, Float } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { TimeEffect } from "./TimeEffect";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
 import { CustomText } from "./CustomText";
 
 export const Environment = () => {

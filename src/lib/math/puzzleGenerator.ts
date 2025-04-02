@@ -8,6 +8,7 @@ const generateNumberInRange = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const roundToDecimals = (num: number, decimals: number): number => {
   const factor = Math.pow(10, decimals);
   return Math.round(num * factor) / factor;

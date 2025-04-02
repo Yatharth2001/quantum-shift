@@ -46,9 +46,6 @@ export const CustomText = forwardRef<THREE.Group, CustomTextProps>(
       children,
       color = "#ffffff",
       fontSize = 1,
-      outlineWidth = 0,
-      outlineColor = "#000000",
-      ...textProps
     } = props;
 
     const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);

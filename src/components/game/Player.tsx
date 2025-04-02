@@ -1,5 +1,5 @@
 import { useRef, useMemo } from "react";
-import { useFrame, extend, ThreeElements } from "@react-three/fiber";
+import { useFrame, extend } from "@react-three/fiber";
 import { useGameStore } from "@/stores/gameStore";
 import * as THREE from "three";
 import {
@@ -35,7 +35,7 @@ export const Player = () => {
       velocity: new THREE.Vector3(0, 0, 0),
       mass: 1,
     }),
-    []
+    [position.x, position.y]
   );
 
   useFrame((state, delta) => {

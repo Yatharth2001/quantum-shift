@@ -13,8 +13,10 @@ export class SoundManager {
 
   private initializeAudioContext() {
     try {
-      this.audioContext = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
+      // Cast to unknown first, then to the specific type
+      this.audioContext = new ((
+        window as unknown as { webkitAudioContext?: typeof AudioContext }
+      ).webkitAudioContext || window.AudioContext)();
     } catch (error) {
       console.warn("AudioContext not supported:", error);
     }
@@ -106,7 +108,7 @@ export class SoundManager {
         }
 
         this.sounds.set(key, audio);
-      } catch (error) {
+      } catch {
         console.warn(`Using synthetic fallback for sound: ${key}`);
         this.failedSounds.add(key);
       }
@@ -120,13 +122,15 @@ export class SoundManager {
     const sound = this.sounds.get(name);
     if (sound) {
       sound.currentTime = 0;
-      sound.play().catch((e) => {
-        console.warn("Sound playback failed:", e);
+      sound.play().catch(() => {
+        console.warn("Sound playback failed");
         this.failedSounds.add(name);
 
         // Try synthetic fallback
         if (!name.includes("Bg")) {
-          const synthetic = this.generateSyntheticSound(name as any);
+          const synthetic = this.generateSyntheticSound(
+            name as "realityShift" | "timeReverse" | "puzzleSolved"
+          );
           if (synthetic) {
             synthetic.oscillator.start();
             synthetic.oscillator.stop(this.audioContext!.currentTime + 0.5);
@@ -138,7 +142,9 @@ export class SoundManager {
 
     // Fall back to synthetic sound if available
     if (this.failedSounds.has(name) && !name.includes("Bg")) {
-      const synthetic = this.generateSyntheticSound(name as any);
+      const synthetic = this.generateSyntheticSound(
+        name as "realityShift" | "timeReverse" | "puzzleSolved"
+      );
       if (synthetic) {
         synthetic.oscillator.start();
         synthetic.oscillator.stop(this.audioContext!.currentTime + 0.5);

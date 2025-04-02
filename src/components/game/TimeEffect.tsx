@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useFrame, extend } from "@react-three/fiber";
-import type { ThreeElements } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
 import { useGameStore } from "@/stores/gameStore";
 import { vertexShader, fragmentShader } from "@/lib/shaders/timeShader";
@@ -30,7 +29,9 @@ declare module "@react-three/fiber" {
 
 export const TimeEffect = () => {
   const meshRef = useRef<THREE.Mesh>(null);
-  const materialRef = useRef<any>(null);
+  const materialRef = useRef<
+    THREE.ShaderMaterial & { time: number; timeDirection: number }
+  >(null);
   const { timeDirection } = useGameStore();
 
   useFrame((state) => {
