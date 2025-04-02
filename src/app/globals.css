@@ -1,11 +1,14 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --normal-primary: #00ff88;
+  --quantum-primary: #ff00ff;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -20,7 +23,141 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  overflow: hidden;
+  background: #000;
+  color: rgb(var(--foreground-rgb));
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes reality-shift {
+  0% {
+    filter: hue-rotate(0deg) blur(0px);
+  }
+  50% {
+    filter: hue-rotate(180deg) blur(4px);
+  }
+  100% {
+    filter: hue-rotate(360deg) blur(0px);
+  }
+}
+
+@keyframes reality-shift-pulse {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(180deg) brightness(1.2);
+  }
+  100% {
+    filter: hue-rotate(360deg) brightness(1);
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out 1s forwards;
+}
+
+.reality-shift {
+  animation: reality-shift-pulse 2s infinite;
+}
+
+/* Quantum particle effects */
+.quantum-particle {
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    var(--quantum-primary) 0%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Energy meter glow effect */
+.energy-glow {
+  box-shadow: 0 0 10px var(--normal-primary), 0 0 20px var(--normal-primary),
+    0 0 30px var(--normal-primary);
+}
+
+.quantum .energy-glow {
+  box-shadow: 0 0 10px var(--quantum-primary), 0 0 20px var(--quantum-primary),
+    0 0 30px var(--quantum-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--normal-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc6a;
+}
+
+.quantum ::-webkit-scrollbar-thumb {
+  background: var(--quantum-primary);
+}
+
+.quantum ::-webkit-scrollbar-thumb:hover {
+  background: #cc00cc;
+}
+
+/* Input field glow effect */
+.glow-effect {
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:focus {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+}
+
+/* Input styles */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+@layer utilities {
+  .glow-cyan {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(0, 255, 255, 0.2),
+      0 0 30px rgba(0, 255, 255, 0.1);
+  }
+
+  .glow-fuchsia {
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.2),
+      0 0 30px rgba(255, 0, 255, 0.1);
+  }
+
+  .glow-green {
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+
+  .glow-red {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3);
+  }
 }
