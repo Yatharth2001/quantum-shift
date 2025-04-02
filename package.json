@@ -10,20 +10,19 @@
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.2.5",
-    "@react-three/drei": "^10.0.5",
-    "@react-three/fiber": "^9.1.1",
-    "@types/three": "^0.175.0",
-    "framer-motion": "^12.6.3",
+    "@react-three/drei": "^9.88.7",
+    "@react-three/fiber": "^8.15.11",
+    "@types/three": "^0.155.1",
+    "framer-motion": "^10.16.4",
     "next": "14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "three": "^0.175.0",
-    "zustand": "^5.0.3",
-    "three-stdlib": "^2.35.14"
+    "three": "^0.155.0",
+    "zustand": "^4.4.6",
+    "three-stdlib": "^2.28.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^2.1.4",
-    "@tailwindcss/postcss8": "^2.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
