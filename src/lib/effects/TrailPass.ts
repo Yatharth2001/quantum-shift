@@ -18,11 +18,7 @@ export class TrailPass extends THREE.Object3D {
     this.positions = [];
   }
 
-  onBeforeRender(
-    renderer: THREE.WebGLRenderer,
-    scene: THREE.Scene,
-    camera: THREE.Camera
-  ) {
+  onBeforeRender() {
     if (this.parent) {
       this.positions.unshift(this.parent.position.clone());
       if (this.positions.length > Math.abs(this.length)) {
